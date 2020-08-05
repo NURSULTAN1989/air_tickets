@@ -1,0 +1,15 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/main.html">
+<div layout:fragment = "theFragmentContainer">
+    <div class="row-mt-5">
+        <div class="col-sm-5 offset-2">
+            <h3><a th:href="@{'/'}" th:text="#{label.home}"></a> </h3>
+            <h3 >Hello dier <span th:text = "${user.fullName}"></span> </h3>
+
+        </div>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,27 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/main.html">
+<div layout:fragment = "theFragmentContainer">
+    <div class="row-mt-5">
+        <div class="col-sm-5 offset-2">
+            <h3><a href="/" th:text="#{label.home}"></a> </h3>
+
+            <form th:action="@{'/tologin'}" method="post">
+                <div class="form-group">
+                    <label th:text="#{label.login}"></label>
+                    <input type="text" class="form-control" name="user_login">
+                 </div>
+                <div class="form-group">
+                    <label th:text="#{label.password}"></label>
+                    <input type="password" class="form-control" name="user_password">
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-success" th:text="#{button.login}"></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+</html>

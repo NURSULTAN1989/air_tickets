@@ -1,0 +1,83 @@
+<html xmlns:th="http://www.w3.org/1999/xhtml"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="admin/navs/navbar.html">
+<div layout:fragment = "theFragmentContainer">
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop" th:text="#{label.addflights}">
+
+    </button>
+    <h3 th:text="${param.error_password}">Пароли не совпадают</h3>
+    <h3 th:text="${param.error_login}">логин уже используется</h3>
+    <h3 th:text="${error_notfilled}">не все поля заполнены</h3>
+    <h3 th:text="${param.success}">успешно добавлен</h3>
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">ADD AIRLINES</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form th:action = "@{'/admin/toaddairlines'}" method="post">
+                        <div class="form-group">
+                            <label th:text = "#{label.name}"></label>
+                            <input type="text" name="name" class="form-control" placeholder="ВВЕДИТЕ ФАМИЛИЮ И ИМЯ">
+                        </div>
+                        <div class="form-group">
+                            <label th:text = "#{label.login}">Логин:</label>
+                            <input type="text" name="model" class="form-control" placeholder="ВВЕДИТЕ ЛОГИН">
+                        </div>
+                        <div class="form-group">
+                            <label>Пароль:</label>
+                            <input type="number" name="econom_capacity" class="form-control" placeholder="ВВЕДИТЕ ПАРОЛЬ">
+                        </div>
+                        <div class="form-group">
+                            <label>Подтвердите Пароль:</label>
+                            <input type="number" name="business_capacity" class="form-control" placeholder="ПОДТВЕРДИТЕ ПАРОЛЬ">
+                        </div>
+                        <div class="form-group">
+                            <button class="form-control bg-info" style="font-family: cursive; font-weight: 510; color: black;">ДОБАВИТЬ</button>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <table cellspacing="30">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Login</th>
+                <th>FullName</th>
+                <th>Role</th>
+                <th><a class="btn btn-sm-info" th:text="#{label.edit}"></a></th>
+                <th><a class="btn btn-sm-info" th:text="#{label.delete}"></a></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each = "usr : ${cashier}">
+                <td th:text = "${usr.id}"></td>
+                <td th:text = "${usr.login}"></td>
+                <td th:text = "${usr.fullName}"></td>
+                <td>
+                    <span th:each = "r : ${usr.roles}" th:text = "${r.role}" style="margin-right: 10px;"></span>
+                </td>
+                <td><a class="btn btn-info">EDIT</a></td>
+                <td><a class="btn btn-info">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</html>
